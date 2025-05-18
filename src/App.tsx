@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import MainLayout from './components/templates/main-layout';
+import ErrorPage from './pages/errorPage';
+import CryptoDetail from './components/molecules/CryptoDetail';
+import HomePage from './pages/HomePage';
+import AddCryptoPage from './pages/AddCryptoPage';
+import addCryptoAction from './components/organisms/FormActionCrypto';
+
+
+const router = createBrowserRouter([{
+  path: '/',
+  element: <MainLayout />,
+  errorElement: <ErrorPage />,
+  children: [
+    {
+      path: '/',
+      element: <HomePage />,
+
+    },
+    {
+      path: '/coin/:id',
+      element: <CryptoDetail />,
+    },
+    {
+      path: '/add',
+      element: <AddCryptoPage />,
+      action: addCryptoAction,
+    }
+  ]
+}
+])
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
