@@ -1,0 +1,47 @@
+.dashboard {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fafafa; /* רקע בהיר לעמוד */
+  border-radius: 12px; /* פינות מעוגלות */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* צל עדין */
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.item:hover {
+  background-color: #f0f0f0;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.link:hover {
+  color: #007bff;
+}
+
+.image {
+  width: 32px;
+  height: 32px;
+}

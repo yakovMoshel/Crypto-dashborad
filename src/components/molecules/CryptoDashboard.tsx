@@ -1,30 +1,29 @@
-import { useEffect, useState } from 'react';
 import { getCryptos } from '../../services/cryptoService';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { Crypto } from '../../domain/models/models';
+import styles from '../../styles/CryptoDashboard.module.css';
 
 export default function CryptoDashboard() {
-    const [cryptos, setCryptos] = useState<Crypto[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await getCryptos();
-            setCryptos(data);
-        };
-
-        fetchData();
-    }, []);
+    const cryptos = useLoaderData() as Crypto[];
 
     return (
-        <ul>
-            {cryptos.map((crypto) => (
-                <li key={crypto.id}>
-                    <Link to={`/coin/${crypto.id}`}>
-                        <img src={crypto.image} alt={crypto.name} width={24} />
-                        {crypto.name} ({crypto.symbol.toUpperCase()}) - ${crypto.current_price.toLocaleString()}
-                    </Link>
-                </li>
-            ))}
-        </ul>
+        <div className={styles.dashboard}>
+            <ul className={styles.list}>
+                {cryptos.map((crypto) => (
+                    <li key={crypto.id} className={styles.item}>
+                        <Link to={`/coin/${crypto.id}`} className={styles.link}>
+                            <img src={crypto.image} alt={crypto.name} className={styles.image} />
+                            <span>{crypto.name} ({crypto.symbol.toUpperCase()})</span>
+                            <span>- ${crypto.current_price.toLocaleString()}</span>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
+}
+
+export async function loader() {
+    const cryptos = await getCryptos();
+    return cryptos;
 }

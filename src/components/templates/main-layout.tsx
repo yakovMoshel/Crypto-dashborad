@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'
-import MainNavigations from '../../navigation/MainNavigations'
+import Header from '../molecules/Header'
 
 export default function Layout() {
     return (<>
-        <MainNavigations />
+        <Header />
         <main>
             <Outlet />
         </main>
