@@ -30,6 +30,7 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 export type LabelProps = {
   htmlFor: string;
   children: React.ReactNode;
+  className?: string;
 };
 
 

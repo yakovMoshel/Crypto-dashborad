@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainLayout from './components/templates/main-layout';
 import ErrorPage from './pages/errorPage';
-import CryptoDetail from './components/molecules/CryptoDetail';
+import { loader as cryptoDashboardLoader } from './components/molecules/CryptoDashboard';
+import CryptoDetail, { loader as cryptoDetailLoader } from './components/molecules/CryptoDetail';
 import HomePage from './pages/HomePage';
 import AddCryptoPage from './pages/AddCryptoPage';
-import addCryptoAction from './components/organisms/FormActionCrypto';
+import addCryptoAction from './services/FormActionCrypto';
+
 
 
 const router = createBrowserRouter([{
@@ -15,11 +17,13 @@ const router = createBrowserRouter([{
     {
       path: '/',
       element: <HomePage />,
-
+      loader: cryptoDashboardLoader
     },
     {
       path: '/coin/:id',
       element: <CryptoDetail />,
+      loader: cryptoDetailLoader
+
     },
     {
       path: '/add',
